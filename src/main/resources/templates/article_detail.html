@@ -13,7 +13,7 @@
                 <a th:href="@{|/article/modify/${article.id}|}" class="btn btn-dark"
                    sec:authorize="isAuthenticated()"
                    th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
-                   th:text="수정"></a>
+                   >Article 수정</a>
             </div>
             <a href="/article/list" class="btn btn-primary">Article 목록</a>
             <br>
