@@ -1,0 +1,26 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content">
+
+    <h1>회원가입</h1>
+    <form th:action="@{|/user/signUp|}" method="post">
+        <div class="mb-3">
+            <label for="userId" class="form-label">유저ID</label>
+            <input type="text" class="form-control" name = "userId" id="userId">
+        </div>
+        <div class="mb-3">
+            <label for="nickname" class="form-label">닉네임</label>
+            <input type="text" class="form-control" name = "nickname" id="nickname">
+        </div>
+        <div class="mb-3">
+            <label for="password1" class="form-label">비밀번호</label>
+            <input type="password" class="form-control" name = "password1" id="password1">
+        </div>
+        <div class="mb-3">
+            <label for="password2" class="form-label">비밀번호 확인</label>
+            <input type="password" class="form-control" name = "password2" id="password2">
+        </div>
+        <button type="submit" class="btn btn-primary"> 등록</button>
+    </form>
+
+</div>
+</html>
