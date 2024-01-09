@@ -16,7 +16,8 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
                         .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
-//                login 처리
+//                login-> login! authorized~
+//                로그인 처리 미비
         ;
         return http.build();
     }
