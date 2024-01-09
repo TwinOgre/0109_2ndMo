@@ -26,12 +26,13 @@ public class UserService {
 
         this.userRepository.save(siteUser);
     }
-    public SiteUser getUser(String username){
-        Optional<SiteUser> ou = this.userRepository.findByusername(username);
-        if(ou.isEmpty()){
+    public SiteUser getUser(String username) {
+        Optional<SiteUser> siteUser = this.userRepository.findByusername(username);
+        if (siteUser.isPresent()) {
+            return siteUser.get();
+        } else {
             throw new RuntimeException();
         }
-        return ou.get();
     }
 
 }
