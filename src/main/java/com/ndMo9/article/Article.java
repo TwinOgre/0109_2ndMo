@@ -1,5 +1,6 @@
 package com.ndMo9.article;
 
+import com.ndMo9.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,4 +27,7 @@ public class Article {
     private LocalDateTime createDate;
 
     private LocalDateTime modifyDate;
+
+    @ManyToOne
+    private SiteUser author;
 }

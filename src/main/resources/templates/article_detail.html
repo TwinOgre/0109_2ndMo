@@ -9,11 +9,19 @@
         <div class="card-body">
             <h5 class="card-title" th:text="${article.subject}"></h5>
             <p class="card-text" th:text="${article.content}"></p>
-            <a th:href="@{|/article/modify/${article.id}|}" class="btn btn-dark">Article 수정</a>
+            <div class="my-3">
+                <a th:href="@{|/article/modify/${article.id}|}" class="btn btn-dark"
+                   sec:authorize="isAuthenticated()"
+                   th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
+                   th:text="수정"></a>
+            </div>
             <a href="/article/list" class="btn btn-primary">Article 목록</a>
             <br>
-            <a th:href="@{|/article/delete/${article.id}|}" class="btn btn-danger">Article 삭제</a>
-
+            <div class="my-3">
+            <a th:href="@{|/article/delete/${article.id}|}" class="btn btn-danger"
+               th:if="${article.author != null and #authentication.getPrincipal().getUsername() ==
+               article.author.username}">Article 삭제</a>
+            </div>
         </div>
     </div>
 </div>

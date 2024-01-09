@@ -26,14 +26,12 @@ public class UserService {
 
         this.userRepository.save(siteUser);
     }
-
-    public void login(String username, String password1) {
-        Optional<SiteUser> os = this.userRepository.findByusername(username);
-        if (os.isEmpty()) {
+    public SiteUser getUser(String username){
+        Optional<SiteUser> ou = this.userRepository.findByusername(username);
+        if(ou.isEmpty()){
             throw new RuntimeException();
         }
-        if (password1.equals(os.get().getPassword())) {
-            this.userSecurityService.loadUserByUsername(username);
-        }
+        return ou.get();
     }
+
 }

@@ -51,16 +51,6 @@ public class UserController {
 
         return "user_loginForm";
     }
-
-    @PostMapping("/login")
-    public String login(@Valid UserForm userForm, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "user_loginForm";
-        }
-        this.userService.login(userForm.getUsername(), userForm.getPassword1());
-
-        return "redirect:/";
-    }
     @GetMapping("/logout")
     public String logout(){
 
