@@ -44,7 +44,7 @@ public class UserController {
     @PostMapping("/login")
     public String login(@Valid UserForm userForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "user_signUpForm";
+            return "user_loginForm";
         }
         this.userService.login(userForm.getUserId(), userForm.getPassword1());
 
