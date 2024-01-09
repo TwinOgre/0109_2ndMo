@@ -3,6 +3,7 @@ package com.ndMo9.user;
 import com.ndMo9.article.ArticleForm;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,12 +28,22 @@ public class UserController {
             return "user_signUpForm";
         }
         if (!userForm.getPassword1().equals(userForm.getPassword2())) {
+            bindingResult.rejectValue("password2", "passwordInCorrect",
+                    "2개의 패스워드가 일치하지 않습니다.");
             return "user_signUpForm";
         }
-
-        this.userService.signUp(userForm.getUserId(), userForm.getNickname(), userForm.getPassword1());
-
-        return "redirect:/article/list";
+        try{
+        this.userService.signUp(userForm.getUsername(), userForm.getNickname(), userForm.getPassword1());
+        }catch(DataIntegrityViolationException e) {
+            e.printStackTrace();
+            bindingResult.reject("signupFailed", "이미 등록된 사용자입니다.");
+            return "user_signupForm";
+        }catch(Exception e) {
+            e.printStackTrace();
+            bindingResult.reject("signupFailed", e.getMessage());
+            return "user_signupForm";
+        }
+        return "redirect:/";
     }
 
     @GetMapping("/login")
@@ -46,9 +57,9 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "user_loginForm";
         }
-        this.userService.login(userForm.getUserId(), userForm.getPassword1());
+        this.userService.login(userForm.getUsername(), userForm.getPassword1());
 
-        return "redirect:/article/list";
+        return "redirect:/";
     }
 
 }

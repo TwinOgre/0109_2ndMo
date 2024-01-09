@@ -22,12 +22,11 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <!--     isAnonymous               -->
-                    <a class="nav-link active" aria-current="page" href="/user/login">로그인</a>
-                    <!--      isAuthentificated        -->
+                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user/signUp">회원가입</a>
+                    <a class="nav-link" th:href="@{/user/signUp}">회원가입</a>
                 </li>
             </ul>
         </div>

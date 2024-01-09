@@ -2,10 +2,10 @@
 <div layout:fragment="content">
 
     <h1>회원가입</h1>
-    <form th:action="@{|/user/signUp|}" method="post">
+    <form th:action="@{|/user/signUp|}" th:object="${userForm}" method="post">
         <div class="mb-3">
-            <label for="userId" class="form-label">유저ID</label>
-            <input type="text" class="form-control" name="userId" id="userId">
+            <label for="username" class="form-label">유저ID</label>
+            <input type="text" class="form-control" name="username" id="username">
         </div>
         <div class="mb-3">
             <label for="nickname" class="form-label">닉네임</label>

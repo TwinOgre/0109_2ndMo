@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 public class UserForm {
     @NotEmpty(message = "유저ID는 필수항목입니다.")
-    private String userId;
+    private String username;
 
     @NotEmpty(message = "닉네임은 필수항목입니다.")
     private String nickname;
