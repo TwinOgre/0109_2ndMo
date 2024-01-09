@@ -1,9 +1,9 @@
-<html th:decorate="~{layout}">
-<div th:fragment="content">
+<html layout:decorate="~{layout}">
+<div layout:fragment="content">
 
 <h1>Article_List</h1>
-<table>
-    <thead>
+<table class="table table-hover">
+    <thead class="table-dark">
         <tr>
             <th>번호</th>
             <th>제목</th>
@@ -13,7 +13,7 @@
     <tbody>
         <tr th:each="article, loop : ${articleList}">
             <td th:text="${loop.count}"></td>
-            <td th:text="${article.subject}"></td>
+            <td ><a th:href="@{|/article/detail/${article.id}|}" th:text="${article.subject}"></a></td>
             <td th:text="${article.createDate}"></td>
         </tr>
     </tbody>
