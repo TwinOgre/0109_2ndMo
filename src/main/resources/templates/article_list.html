@@ -1,0 +1,24 @@
+<html th:decorate="~{layout}">
+<div th:fragment="content">
+
+<h1>Article_List</h1>
+<table>
+    <thead>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>생성일</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="article, loop : ${articleList}">
+            <td th:text="${loop.count}"></td>
+            <td th:text="${article.subject}"></td>
+            <td th:text="${article.createDate}"></td>
+        </tr>
+    </tbody>
+</table>
+    <span><a href="/article/create" class="btn btn-primary"> Article 등록</a></span>
+
+</div>
+</html>
