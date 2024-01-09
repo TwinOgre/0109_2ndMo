@@ -27,7 +27,7 @@ public class ArticleService {
 
     public Article getArticle(Integer id) {
         Optional<Article> oa = this.articleRepository.findById(id);
-        if(oa.isEmpty()){
+        if (oa.isEmpty()) {
             throw new RuntimeException();
         }
 
