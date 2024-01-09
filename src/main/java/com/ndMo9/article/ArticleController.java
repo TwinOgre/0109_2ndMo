@@ -43,4 +43,20 @@ public class ArticleController {
         model.addAttribute("article",article);
         return "article_detail";
     }
+    @GetMapping("/modify/{id}")
+    public String modify(Model model,@PathVariable("id") Integer id){
+        Article article = this.articleService.getArticle(id);
+        model.addAttribute("article",article);
+        return "article_modify";
+    }
+    @PostMapping("/modify/{id}")
+    public String modify(Model model, @PathVariable("id") Integer id, @Valid ArticleForm articleForm, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "article_modify";
+        }
+        Article article = this.articleService.getArticle(id);
+
+        this.articleService.modify(article, articleForm.getSubject(),articleForm.getContent());
+        return String.format("redirect:/article/detail/%s", id);
+    }
 }

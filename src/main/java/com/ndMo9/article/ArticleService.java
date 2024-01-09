@@ -33,4 +33,12 @@ public class ArticleService {
 
         return oa.get();
     }
+
+    public void modify(Article article, String subject, String content) {
+        article.setModifyDate(LocalDateTime.now());
+        article.setSubject(subject);
+        article.setContent(content);
+
+        this.articleRepository.save(article);
+    }
 }
